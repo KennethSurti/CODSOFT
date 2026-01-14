@@ -28,6 +28,13 @@ conn.commit()
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
 
+#window settings
+app = ctk.CTk()
+app.title("Modern To-Do List")
+app.geometry("520x500")
+app.resizable(False, False)
+
+
 #Priority Levels: Add a dropdown to mark tasks as Low, Medium, or High priority.
 
 #Due Dates: Use a calendar widget to set deadlines.
