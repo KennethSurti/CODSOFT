@@ -36,6 +36,7 @@ app.resizable(False, False)
 
 
 #CRUD operations
+#keep track of tasks
 
 def load_tasks():
     task_list.delete("1.0", "end")
@@ -46,6 +47,7 @@ def load_tasks():
             f"{task[0]}. {task[1]}  [{task[2]}]\n"
         )
 
+#add task
 
 def add_task():
     title = task_entry.get().strip()
@@ -61,6 +63,26 @@ def add_task():
     task_entry.delete(0, "end")
     load_tasks()
 
+# tracking tasks
+def get_selected_task_id():
+    try:
+        selected_line = task_list.get("insert linestart", "insert lineend")
+        return selected_line.split(".")[0]
+    except:
+        return None
+
+def mark_completed():
+    task_id = get_selected_task_id()
+    if not task_id:
+        messagebox.showwarning("Selection Error", "Select a task line")
+        return
+
+    cursor.execute(
+        "UPDATE tasks SET status=? WHERE id=?",
+        ("Completed", task_id)
+    )
+    conn.commit()
+    load_tasks()
 
 #Priority Levels: Add a dropdown to mark tasks as Low, Medium, or High priority.
 
