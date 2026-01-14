@@ -98,7 +98,7 @@ def delete_task():
 
 # UI LAYOUT
 
-
+#HEADER
 title_label = ctk.CTkLabel(
     app,
     text="📝 To-Do List",
@@ -114,6 +114,8 @@ task_entry = ctk.CTkEntry(
 )
 task_entry.pack(pady=10)
 
+
+# Button control
 button_frame = ctk.CTkFrame(app, fg_color="transparent")
 button_frame.pack(pady=10)
 
@@ -139,6 +141,28 @@ ctk.CTkButton(
     hover_color="#8f1f1f",
     command=delete_task
 ).grid(row=0, column=2, padx=10)
+
+
+#Input Box
+
+
+task_list = ctk.CTkTextbox(
+    app,
+    width=460,
+    height=260,
+    corner_radius=10
+)
+task_list.pack(pady=15)
+
+load_tasks()
+
+# Application Loop 
+
+app.mainloop()
+conn.close()
+
+
+
 #Priority Levels: Add a dropdown to mark tasks as Low, Medium, or High priority.
 
 #Due Dates: Use a calendar widget to set deadlines.
