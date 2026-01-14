@@ -35,6 +35,23 @@ app.geometry("520x500")
 app.resizable(False, False)
 
 
+#CRUD operations
+
+def add_task():
+    title = task_entry.get().strip()
+    if not title:
+        messagebox.showwarning("Input Error", "Task cannot be empty")
+        return
+
+    cursor.execute(
+        "INSERT INTO tasks (title, status) VALUES (?, ?)",
+        (title, "Pending")
+    )
+    conn.commit()
+    task_entry.delete(0, "end")
+    load_tasks()
+
+
 #Priority Levels: Add a dropdown to mark tasks as Low, Medium, or High priority.
 
 #Due Dates: Use a calendar widget to set deadlines.
