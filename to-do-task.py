@@ -2,15 +2,16 @@
 #lets go
 
 
-
-
-
-import tkinter as tk
-from tkinter import messagebox
+import customtkinter as ctk
 import sqlite3
+import os
+from tkinter import messagebox
 
-# The datatbase info for sqlite3
-conn = sqlite3.connect("todo.db")
+# Database info 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.path.join(BASE_DIR, "todo.db")
+
+conn = sqlite3.connect(DB_PATH)
 cursor = conn.cursor()
 
 cursor.execute("""
@@ -22,21 +23,10 @@ CREATE TABLE IF NOT EXISTS tasks (
 """)
 conn.commit()
 
-# CRUD Operations beginning
-def add_task():
-    task = task_entry.get()
-    if task == "":
-        messagebox.showwarning("Input Error", "Task cannot be empty")
-        return
-    cursor.execute("INSERT INTO tasks (title, status) VALUES (?, ?)", (task, "Pending"))
-    conn.commit()
-    task_entry.delete(0, tk.END)
-    view_tasks()
-
-
-
-
-
+#Theme of window
+ 
+ctk.set_appearance_mode("dark")
+ctk.set_default_color_theme("blue")
 
 #Priority Levels: Add a dropdown to mark tasks as Low, Medium, or High priority.
 
