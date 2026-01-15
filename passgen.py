@@ -10,3 +10,4 @@ import random
 import string
 from tkinter import messagebox
 
+#checking the libraries compatibility
