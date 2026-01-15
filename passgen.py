@@ -3,3 +3,10 @@
 #result needs to be displayed
 #promt the input
 #use of combination of random characters
+
+
+import customtkinter as ctk
+import random
+import string
+from tkinter import messagebox
+
