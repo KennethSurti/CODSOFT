@@ -34,3 +34,17 @@ length_entry = ctk.CTkEntry(
 )
 length_entry.pack(pady=10)
 
+# Complexity Options
+
+lowercase_var = ctk.BooleanVar(value=True)
+uppercase_var = ctk.BooleanVar(value=True)
+digits_var = ctk.BooleanVar(value=True)
+symbols_var = ctk.BooleanVar(value=False)
+
+options_frame = ctk.CTkFrame(app)
+options_frame.pack(pady=10)
+
+ctk.CTkCheckBox(options_frame, text="Lowercase (a-z)", variable=lowercase_var).grid(row=0, column=0, padx=10, pady=5)
+ctk.CTkCheckBox(options_frame, text="Uppercase (A-Z)", variable=uppercase_var).grid(row=0, column=1, padx=10, pady=5)
+ctk.CTkCheckBox(options_frame, text="Digits (0-9)", variable=digits_var).grid(row=1, column=0, padx=10, pady=5)
+ctk.CTkCheckBox(options_frame, text="Symbols (!@#$)", variable=symbols_var).grid(row=1, column=1, padx=10, pady=5)
