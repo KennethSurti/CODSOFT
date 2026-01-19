@@ -48,3 +48,25 @@ ctk.CTkCheckBox(options_frame, text="Lowercase (a-z)", variable=lowercase_var).g
 ctk.CTkCheckBox(options_frame, text="Uppercase (A-Z)", variable=uppercase_var).grid(row=0, column=1, padx=10, pady=5)
 ctk.CTkCheckBox(options_frame, text="Digits (0-9)", variable=digits_var).grid(row=1, column=0, padx=10, pady=5)
 ctk.CTkCheckBox(options_frame, text="Symbols (!@#$)", variable=symbols_var).grid(row=1, column=1, padx=10, pady=5)
+
+# Fuctions for generation
+
+def generate_password():
+    try:
+        length = int(length_entry.get())
+        if length <= 0:
+            raise ValueError
+    except ValueError:
+        messagebox.showerror("Invalid Input", "Enter a valid password length")
+        return
+    
+    characters = ""
+
+    if lowercase_var.get():
+        characters += string.ascii_lowercase
+    if uppercase_var.get():
+        characters += string.ascii_uppercase
+    if digits_var.get():
+        characters += string.digits
+    if symbols_var.get():
+        characters += string.punctuation
