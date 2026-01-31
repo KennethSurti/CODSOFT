@@ -74,3 +74,41 @@ result_entry = ctk.CTkEntry(
 result_entry.pack(pady=10)
 
 app.mainloop()
+
+
+# Operations Fuctions
+
+
+def calculate():
+    #error handling
+
+    try:
+        num1 = float(num1_entry.get())
+        num2 = float(num2_entry.get())
+    except ValueError:
+        messagebox.showerror("Invalid Input", "Please enter valid numbers")
+        return
+
+
+#operations 
+    operation = operation_var.get()
+
+    if operation == "Addition (+)":
+        result = num1 + num2
+    elif operation == "Subtraction (-)":
+        result = num1 - num2
+    elif operation == "Multiplication (×)":
+        result = num1 * num2
+    elif operation == "Division (÷)":
+        if num2 == 0:
+            messagebox.showerror("Math Error", "Division by zero is not allowed")
+            return
+        result = num1 / num2
+    else:
+        messagebox.showwarning("Selection Error", "Please select an operation")
+        return
+
+    result_entry.configure(state="normal")
+    result_entry.delete(0, "end")
+    result_entry.insert(0, str(result))
+    result_entry.configure(state="readonly")
